@@ -1,0 +1,18 @@
+<h1 class="text-center m-3">NEW GAME</h1>
+
+<div class = "d-flex flex-inline justify-content-center m-2 p-2 gap-2">
+  <% @letters.each do |letter| %>
+  <p class = "fs-5 text-white font-monospace p-3 border rounded shadow-sm mb-5 bg-danger bg-opacity-50"><strong><%= letter %></strong></p>
+  <% end %>
+</div>
+
+<div class = "d-flex flex-column align-items-center m-2 p-2">
+  <p>What is the longest word you can find ?</p>
+  <form class="d-flex gap-2" action="/score" method="post" data-turbo="false">
+    <input class="form-control" type="text" name="word" placeholder="Type your word here">
+    <input class="btn btn-danger" type="submit" value="PLAY">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @letters %>
+    <%= hidden_field_tag :start_time, @start_time %>
+  </form>
+</div>
